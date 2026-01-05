@@ -12,6 +12,8 @@ int giLogDays = 7;
 bool gbMCC118ConfigFlag = false;
 int giMSScan = 5000000; // Suspend execution for 100,000 microseconds
 int giReadChannel = 0;
+string delimiterL1 = "|:|";
+char delimiterL2 = '=';
 
 #pragma endregion InitGlobalVariables
 

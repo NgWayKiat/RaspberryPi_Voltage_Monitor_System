@@ -35,6 +35,8 @@ extern int giHostPort;
 extern int giLogDays;
 extern bool gbMCC118ConfigFlag;
 extern int giMSScan;
+extern string delimiterL1;
+extern char delimiterL2;
 
 #pragma endregion GlobalVariables
 

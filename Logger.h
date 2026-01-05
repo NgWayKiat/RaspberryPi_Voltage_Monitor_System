@@ -3,14 +3,11 @@
 
 #include <string>
 #include <cstring>
-#include <iostream>
-#include <filesystem>
-#include <fstream>
-#include <sstream>
-#include <iomanip>
 #include <sys/stat.h>
 #include <time.h>
 #include <cstdio>
+#include "unistd.h"
+#include "fcntl.h"
 #include "Global.h"
 #include "Misc.h"
 #include "Versions.h"

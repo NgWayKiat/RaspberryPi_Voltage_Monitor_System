@@ -3,9 +3,9 @@
 #include "Versions.h"
 #include "MCC_DAQHATS.h"
 #include "ServerSocket.h"
+#include "ClientSocket.h"
 #include "Logger.h"
 #include "Global.h"
-
 
 using namespace std;
 
@@ -19,13 +19,13 @@ void Init(int& retVal)
     while(true)
     {
         memset(buf, 0, sizeof(buf));
-        sprintf(buf, "Start the Truncate Function....");
+        sprintf(buf, "Start the Log File Housekeeping Function (> %d days)....", giLogDays);
         writeToLog(INFO, buf);
         ret = deleteLogFile();
         if(ret == 0)
         {
             memset(buf, 0, sizeof(buf));
-            sprintf(buf, "No Log File need to truncate....");
+            sprintf(buf, "No action for the Log FIle Housekeeping Function....");
             writeToLog(INFO, buf);
         }
         sleep(86400); //24hrs 24 * 60 * 60
@@ -49,8 +49,6 @@ int main(void){
     writeToLog(INFO, buf);
 
     ret = initiate_MappingTables();
-
-    deleteLogFile();
 
     if(ret > 0)
     {
@@ -87,7 +85,6 @@ int main(void){
             sprintf(buf, "Init Error: %d", retTruncThread);
             writeToLog(ERRORS, buf);
         }
-
 
         if (retMCCThread != 0)
         {

@@ -119,7 +119,6 @@ void handle_client_event(int* client_sock, string recData)
     bool isSpecialCode = false;
     double vol = 0.0;
     int iDelToken = 0;
-    string delimeter = "|:|";
     string sTemp = "";
     string firstToken = "";
     string secondToken = "";
@@ -130,7 +129,8 @@ void handle_client_event(int* client_sock, string recData)
     memset(buf, 0, sizeof(buf));
     sprintf(buf, "%s", recData.c_str());
 
-    firstToken = recData.substr(0, recData.find(delimeter));
+    //string type delimiterL1 is |:|
+    firstToken = recData.substr(0, recData.find(delimiterL1));
     const int iCode = getSRVSOK_CODE(firstToken);
 
     switch (iCode)
@@ -156,11 +156,13 @@ void handle_client_event(int* client_sock, string recData)
         break;
     
     case A0005:
+        //string type delimiterL1 is |:|
         //Split to get the following data with string delimeter         
-        vTemp = splitStringByDelimiter(recData, delimeter);
+        vTemp = splitStringByDelimiter(recData, delimiterL1);
         for (const string& sTemp : vTemp) {
+            //char type delimiterL2 is =
             //split to get the specific data with single char delimeter
-            vTempL2 = splitString(sTemp, '=');
+            vTempL2 = splitString(sTemp, delimiterL2);
             //Only check the size at least 2. exmpl: CHN=2
             if(vTempL2.size() > 1)
             {

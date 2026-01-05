@@ -107,7 +107,7 @@ void writeToLog(LogLevel level, char* message)
 	}
 	
 	sprintf(buf, "%s [%s] %s", dateTime.c_str(), sType.c_str(), message);
-
+	
 	//ios::out is set to write mode
 	//ios::app is append the data in end of line of the file
 	file.open(logFilePath, ios::out | ios::app);
@@ -118,7 +118,7 @@ void writeToLog(LogLevel level, char* message)
 		//printf("%s \r\n", buf);
 		file << buf << endl;
 		fflush(stdout);
-	}
+	}		
 
 	file.close();
 }
